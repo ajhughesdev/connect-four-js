@@ -1,0 +1,97 @@
+.section {
+  background-color: #7945FF;
+  max-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 97px 20px 129px;
+}
+
+.article {
+  background-color: white;
+  padding: 30px 20px 61px;
+  border: 3px solid black;
+  box-shadow: 0 10px 0 0 black;
+  border-radius: 40px;
+  max-height: 586px;
+  max-width: 335px;
+}
+
+.headings {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.rules {
+  font-size: 56px;
+  text-align: center;
+  line-height: calc(71.46 / 56);
+  margin-block-end: 29px;
+}
+
+p {
+  margin-block-end: 33px;
+}
+
+.headings:not(:first-child) {
+  color: #7945FF;
+  font-size: 20px;
+  line-height: calc(25.52 / 20);
+  margin-block-end: 1rem;
+}
+
+.headings:last-child {
+  /* margin-block-start: 33px; */
+}
+
+.how-to-play {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* padding-inline: 20px; */
+  padding-left: 10px;
+  /* display: grid; */
+  /* grid-template-columns: 1fr; */
+  /* grid-template-areas: "marker text"; */
+}
+
+.how-to-play li {
+  padding-left: 20px;
+  line-height: calc(20.42 / 16);
+  font-size: 1rem;
+  grid-area: text;
+}
+
+.how-to-play li::marker {
+  grid-area: marker;
+  font-variant-numeric: proportional-nums;
+  font-weight: bold;
+  font-family: 'Space Grotesk', 'Space Grotesk-fallback', sans-serif;
+}
+
+.how-to-play li:where(:not(.first-rule))::marker {
+  content: counter(list-item);
+}
+.first-rule {
+  /* counter-reset: list-item */
+  margin-left: -29px;
+}
+
+.first-rule::before {
+  content: "1";
+  font-weight: 700;
+  margin-right: 22px;
+}
+
+.how-to-play li:last-of-type {
+  margin-block-end: 29px;
+}
+
+.back-to-main {
+  display: grid;
+  place-items: center;
+  margin-block-start: -3px;
+}
+
+
+

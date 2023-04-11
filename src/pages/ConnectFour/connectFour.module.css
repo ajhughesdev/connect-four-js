@@ -1,0 +1,163 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #7945ff;
+}
+
+.nav-btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 335px;
+  margin-block: 50px 181px;
+}
+
+.nav-btns button {
+  background-color: #5C2DD5;
+  padding: 9px 0 10px;
+  width: 108px;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: calc(20.42 / 16);
+  text-align: center;
+  cursor: pointer;
+}
+
+.logo {
+  /* margin-inline: auto; */
+  width: 46px;
+  height: 49px;
+}
+
+.board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 335px;
+  height: 100%;
+  background-color: #7945ff;
+  position: relative;
+  margin: auto;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  width: 335px;
+  pointer-events: auto;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 7.62px 7px;
+  border: 1px solid #5C2DD5;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 7px;
+}
+
+.cell {
+  border: 1px solid #5C2DD5;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.black-board,
+.white-board {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.black-board {
+  translate: 0 10px;
+}
+
+.game-piece {
+  height: 46px;
+  width: 41px;
+  margin: auto;
+  position: absolute;
+  display: block;
+  
+  background-size: cover;
+  /* animation-timing-function: cubic-bezier(0.5, 0.05, 1, .5);
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards; */
+}
+
+[data-type="first"] {
+  background-image: url('./../../assets/images/counter-red-small.svg');
+}
+
+[data-type="second"] {
+  background-image: url('./../../assets/images/counter-yellow-small.svg');
+}
+
+/* [data-type="row0"] {
+  translate: 0 2px;
+}
+
+[data-type="row1"] {
+  translate: 0 5px;
+}
+
+[data-type="row2"] {
+  translate: 0 6px;
+}
+
+[data-type="row3"] {
+  translate: 0 7px;
+}
+
+[data-type="row4"] {
+  translate: 0 9px;
+} 
+
+[data-type="row5"] {
+  translate: 0 10px;
+} */
+
+/* [data-type="col0"] > .game-piece {
+  animation-duration: 500ms;
+  animation-name: drop0;
+} */
+/* 
+@keyframes drop0 {
+
+  75%,
+  90%,
+  97%,
+  100% {
+    transform: translateY(1.1rem);
+  }
+
+  80% {
+    transform: translateY(0);
+  }
+
+  95% {
+    transform: translateY(.5rem);
+  }
+
+  99% {
+    transform: translateY(.75rem);
+  }
+} */

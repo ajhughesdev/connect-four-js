@@ -1,0 +1,27 @@
+@import "the-new-css-reset";
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('./assets/fonts/SpaceGrotesk-VariableFont_wght.woff2') format('woff2-variations');
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: optional;
+}
+
+@font-face {
+  font-family: "Space Grotesk-fallback";
+  size-adjust: 136.69%;
+  ascent-override: 84%;
+  src: local("Arial");
+}
+
+:root {
+  font-family: "Space Grotesk", "Space Grotesk-fallback", sans-serif;
+  font-size: 16px;
+}
+
+svg:hover #Oval-Copy-37,
+svg:hover #Oval-Copy-38 {
+  fill: #5C2DD5;
+}
+
