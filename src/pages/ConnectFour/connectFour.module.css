@@ -44,7 +44,6 @@
   justify-content: center;
   width: 335px;
   height: 100%;
-  background-color: #7945ff;
   position: relative;
   margin: auto;
 }
@@ -59,7 +58,6 @@
   top: 0;
   left: 0;
   padding: 7.62px 7px;
-  border: 1px solid #5C2DD5;
 }
 
 .row {
@@ -70,7 +68,6 @@
 }
 
 .cell {
-  border: 1px solid #5C2DD5;
   width: 45px;
   height: 45px;
   display: flex;
@@ -96,18 +93,17 @@
   margin: auto;
   position: absolute;
   display: block;
-  
   background-size: cover;
   /* animation-timing-function: cubic-bezier(0.5, 0.05, 1, .5);
   animation-iteration-count: 1;
   animation-fill-mode: forwards; */
 }
 
-[data-type="first"] {
+[data-type="1"] {
   background-image: url('./../../assets/images/counter-red-small.svg');
 }
 
-[data-type="second"] {
+[data-type="2"] {
   background-image: url('./../../assets/images/counter-yellow-small.svg');
 }
 
@@ -134,7 +130,6 @@
 [data-type="row5"] {
   translate: 0 10px;
 } */
-
 /* [data-type="col0"] > .game-piece {
   animation-duration: 500ms;
   animation-name: drop0;

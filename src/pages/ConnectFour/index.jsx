@@ -2,31 +2,16 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { ReactComponent as Logo } from './../../assets/images/logo.svg'
-
-// import GamePiece from './../../components/GamePiece/GamePiece'
-
 import { ReactComponent as BlackBoard } from './../../assets/images/board-layer-black-small.svg'
 import { ReactComponent as WhiteBoard } from './../../assets/images/board-layer-white-small.svg'
 
-import css from './connectFour.module.css'
+import GamePiece from './../../components/GamePiece/GamePiece'
 
-const GamePiece = ({ player, row }) => {
-  const boardHeight = 5
-  const rowHeight = 34
-  const gap = 12.5
-  const bottom = (boardHeight - row) * (rowHeight + gap)
-  return (
-    <div
-      className={css['game-piece']}
-      data-type={player}
-      style={{ bottom, transition: 'bottom 450ms ease-in' }}
-    ></div>
-  )
-}
+import css from './connectFour.module.css'
 
 const ConnectFour = () => {
   const [board, setBoard] = useState([])
-  const [currentPlayer, setCurrentPlayer] = useState('first')
+  const [currentPlayer, setCurrentPlayer] = useState('1')
   const [pauseMenu, setPauseMenu] = useState(false)
   const [hoveredColumn, setHoveredColumn] = useState(null)
 
@@ -36,7 +21,7 @@ const ConnectFour = () => {
 
   const restartGame = () => {
     setBoard(initializeBoard())
-    setCurrentPlayer('first')
+    setCurrentPlayer('1')
     setPauseMenu(false)
   }
 
@@ -60,7 +45,7 @@ const ConnectFour = () => {
         setTimeout(() => {
           newBoard[row][col] = { player: currentPlayer, animate: false }
           setBoard(newBoard)
-          setCurrentPlayer(currentPlayer === 'first' ? 'second' : 'first')
+          setCurrentPlayer(currentPlayer === '1' ? '2' : '1')
         }, 150)
         break
       }
@@ -120,7 +105,8 @@ const ConnectFour = () => {
                   onMouseEnter={() => handleMouseEnter(colIndex)}
                   onMouseLeave={handleMouseLeave}
                 >
-                  {rowIndex === 0 &&
+                  {window.matchMedia('(min-width: 768px)').matches &&
+                    rowIndex === 0 &&
                     hoveredColumn === colIndex &&
                     !isColumnFull(colIndex) && (
                       <div className='arrow'>
