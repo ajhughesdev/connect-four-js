@@ -107,6 +107,25 @@
   background-image: url('./../../assets/images/counter-yellow-small.svg');
 }
 
+.game-piece[data-type="1"].highlight {
+  background-image: url('./../../assets/images/counter-red-small-win.svg');
+}
+
+.game-piece[data-type="1"].highlight {
+  background-image: url('./../../assets/images/highlight-win-small.svg'), url('./../../assets/images/counter-red-small.svg');
+  background-size: 20px 20px, cover;
+  background-position: 52%, center;
+  background-repeat: no-repeat;
+}
+
+.game-piece[data-type="2"].highlight {
+  background-image: url('./../../assets/images/highlight-win-small.svg'), url('./../../assets/images/counter-yellow-small.svg');
+  background-size: 20px 20px, cover;
+  background-position: 52%, center;
+  background-repeat: no-repeat;
+}
+
+
 /* [data-type="row0"] {
   translate: 0 2px;
 }
