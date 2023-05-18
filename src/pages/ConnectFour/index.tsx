@@ -1,11 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { ReactComponent as Logo } from './../../assets/images/logo.svg'
-import { ReactComponent as BlackBoard } from './../../assets/images/board-layer-black-small.svg'
-import { ReactComponent as WhiteBoard } from './../../assets/images/board-layer-white-small.svg'
-
+import Header from '../../components/Header/Header'
+import PlayerScoreBoard from '../../components/PlayerScoreBoard/PlayerScoreBoard'
+import WinnersModal from '../../components/WinnersModal/WinnersModal'
 import GamePiece from '../../components/GamePiece/GamePiece'
+
+import { ReactComponent as BlackBoard } from './../../assets/images/board-layer-black-small.svg'
+import { ReactComponent as BlackBoardLarge } from './../../assets/images/board-layer-black-large.svg'
+import { ReactComponent as WhiteBoard } from './../../assets/images/board-layer-white-small.svg'
+import { ReactComponent as WhiteBoardLarge } from './../../assets/images/board-layer-white-large.svg'
+import { ReactComponent as WinnersBar } from './../../assets/images/winners-bar-small.svg'
 
 import css from './connectFour.module.css'
 
@@ -21,19 +26,20 @@ const ConnectFour: React.FC = () => {
   const [hoveredColumn, setHoveredColumn] = useState<number | null>(null)
   const [player1Score, setPlayer1Score] = useState<number>(0)
   const [player2Score, setPlayer2Score] = useState<number>(0)
-  const [timer, setTimer] = useState<number | null>(null)
+  const [timer, setTimer] = useState<number>(15)
   const [gameStarted, setGameStarted] = useState<boolean>(false)
   const timerRef = useRef<number>()
   const [winner, setWinner] = useState<string | null>(null)
   const [menuVisible, setMenuVisible] = useState<boolean>(false)
   const [remainingTime, setRemainingTime] = useState<number | null>(null)
 
-
   const toggleMenu = () => {
     setMenuVisible((prevMenuVisible) => {
       if (prevMenuVisible) {
         if (remainingTime !== null) {
-          startTimer(remainingTime)
+          if (gameStarted) {
+            startTimer(remainingTime)
+          }
         }
       } else {
         if (timerRef.current) {
@@ -47,12 +53,12 @@ const ConnectFour: React.FC = () => {
 
   const restartGame = () => {
     setBoard(initializeBoard())
-    setCurrentPlayer('red')
+    setCurrentPlayer('1')
     setPlayer1Score(0)
     setPlayer2Score(0)
     setWinner(null)
     clearInterval(timerRef.current)
-    setTimer(null)
+    setTimer(15)
     setGameStarted(false)
     setMenuVisible(false)
   }
@@ -84,7 +90,7 @@ const ConnectFour: React.FC = () => {
           }
           setBoard(initializeBoard())
           setCurrentPlayer(currentPlayer === '1' ? '2' : '1')
-          setTimer(null)
+          setTimer(15)
         }
         return (prevTime ?? 0) - 1
       })
@@ -106,7 +112,7 @@ const ConnectFour: React.FC = () => {
           newBoard[row][col] = { player: currentPlayer, animate: false }
           setBoard(newBoard)
           setCurrentPlayer(currentPlayer === '1' ? '2' : '1')
-        }, 150)
+        })
         clearInterval(timerRef.current)
         startTimer()
 
@@ -115,16 +121,24 @@ const ConnectFour: React.FC = () => {
           clearInterval(timerRef.current)
           setWinner(currentPlayer)
           for (const cell of winningCells) {
-            newBoard[row][col] = { player: currentPlayer, animate: true, highlight: true }
+            const newBoard = [...board]
+            newBoard[row][col] = {
+              player: currentPlayer,
+              animate: true,
+              highlight: true,
+            }
             newBoard[cell.row][cell.col].highlight = true
             setBoard(newBoard)
             setTimeout(() => {
-              newBoard[row][col] = { player: currentPlayer, animate: false, highlight: true }
+              newBoard[row][col] = {
+                player: currentPlayer,
+                animate: false,
+                highlight: true,
+              }
               newBoard[cell.row][cell.col].highlight = true
               setBoard(newBoard)
               setCurrentPlayer(currentPlayer === '1' ? '2' : '1')
             }, 150)
-
           }
           setBoard(newBoard)
           if (currentPlayer === '1') {
@@ -145,7 +159,7 @@ const ConnectFour: React.FC = () => {
     setBoard(initializeBoard())
     setCurrentPlayer('1')
     setWinner(null)
-    setTimer(null)
+    setTimer(15)
   }
 
   const checkWin = (
@@ -207,34 +221,30 @@ const ConnectFour: React.FC = () => {
 
   return (
     <div className={css.game}>
-      <nav className={css['nav-btns']}>
-        <button onClick={toggleMenu}>menu</button>
-        <Logo className={css.logo} width={40} height={40} />
-        <button onClick={restartGame}>restart</button>
-      </nav>
-      {winner && (
-        <div className="modal">
-          <div className="modal-content">
-            <h3>{winner} wins!</h3>
-            <button onClick={playAgain}>Play Again</button>
-          </div>
-        </div>
-      )}
+      <Header toggleMenu={toggleMenu} restartGame={restartGame} />
+      <div className={css.scoreboards}>
+        <PlayerScoreBoard player={'1'} score={player1Score} />
+        <PlayerScoreBoard player={'2'} score={player2Score} />
+      </div>
       {menuVisible && (
-        <div className={css.modal}>
+        <div className={css['modal-main']}>
           <div className={css['modal-content']}>
-            <h3>pause</h3>
-            <button onClick={toggleMenu}>continue game</button>
-            <button onClick={restartGame}>restart</button>
-            <Link to='/' className={css['back-to-main']}>
-              Quit
-            </Link>
+            <h3 className={css.pause}>pause</h3>
+            <div className={css.buttons}>
+              <button onClick={toggleMenu}>continue game</button>
+              <button onClick={restartGame}>restart</button>
+              <Link to='/' className={css['back-to-main']}>
+                Quit Game
+              </Link>
+            </div>
           </div>
         </div>
       )}
 
       <div className={css['board-container']}>
+        {window.matchMedia('(min-width: 640px)').matches && <BlackBoardLarge className={css['black-board-large']} />}
         <BlackBoard className={css['black-board']} width={335} height={320} />
+
         <div className={css.board}>
           {board.map((row, rowIndex) => (
             <div
@@ -250,7 +260,7 @@ const ConnectFour: React.FC = () => {
                   onMouseEnter={() => handleMouseEnter(colIndex)}
                   onMouseLeave={handleMouseLeave}
                 >
-                  {window.matchMedia('(min-width: 768px)').matches &&
+                  {window.matchMedia('(min-width: 960px)').matches &&
                     rowIndex === 0 &&
                     hoveredColumn === colIndex &&
                     !isColumnFull(colIndex) && (
@@ -272,8 +282,97 @@ const ConnectFour: React.FC = () => {
             </div>
           ))}
         </div>
+        {window.matchMedia('(min-width: 640px)').matches && (<WhiteBoardLarge className={css['white-board-large']} />)}
         <WhiteBoard className={css['white-board']} width={335} height={310} />
+        {winner && <WinnersModal winner={winner} playAgain={playAgain} />}
+        <div className={css['your-turn']}>
+          <svg
+            width='197'
+            height='165'
+            viewBox='0 0 197 165'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <g filter='url(#filter0_d_5_5704)'>
+              <path
+                className={
+                  currentPlayer === '1' ? css['your-turn1'] : css['your-turn2']
+                }
+                fillRule='evenodd'
+                clipRule='evenodd'
+                d='M3 55.2795C3 47.2326 7.82258 39.9694 15.2389 36.8468L90.2793 5.25082C95.2186 3.17114 100.786 3.16075 105.733 5.22198L181.692 36.8718C189.145 39.9772 194 47.2593 194 55.3333V132C194 143.046 185.046 152 174 152H23C11.9543 152 3 143.046 3 132V55.2795Z'
+              />
+              <path
+                d='M14.6568 35.4643C6.68427 38.8212 1.5 46.6291 1.5 55.2795V132C1.5 143.874 11.1259 153.5 23 153.5H174C185.874 153.5 195.5 143.874 195.5 132V55.3333C195.5 46.6538 190.281 38.8255 182.269 35.4872L106.31 3.83737C100.992 1.62154 95.0069 1.63271 89.6972 3.86836L14.6568 35.4643Z'
+                stroke='black'
+                strokeWidth='3'
+              />
+            </g>
+            <defs>
+              <filter
+                id='filter0_d_5_5704'
+                x='0'
+                y='0.683517'
+                width='197'
+                height='164.316'
+                filterUnits='userSpaceOnUse'
+                colorInterpolationFilters='sRGB'
+              >
+                <feFlood floodOpacity='0' result='BackgroundImageFix' />
+                <feColorMatrix
+                  in='SourceAlpha'
+                  type='matrix'
+                  values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+                  result='hardAlpha'
+                />
+                <feOffset dy='10' />
+                <feColorMatrix
+                  type='matrix'
+                  values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'
+                />
+                <feBlend
+                  mode='normal'
+                  in2='BackgroundImageFix'
+                  result='effect1_dropShadow_5_5704'
+                />
+                <feBlend
+                  mode='normal'
+                  in='SourceGraphic'
+                  in2='effect1_dropShadow_5_5704'
+                  result='shape'
+                />
+              </filter>
+            </defs>
+            <g
+              className={`${css['your-turn-text']} ${currentPlayer === '1' ? css['your-turng1'] : css['your-turng2']
+                }`}
+              fontFamily='Space Grotesk, Space Grotesk-fallback, sans-serif'
+              fontWeight='700'
+            >
+              <text fontSize='16' transform='translate(31 41)'>
+                <tspan x='1.64' y='16'>
+                  PLAYER {currentPlayer}'s TURN
+                </tspan>
+              </text>
+              <text fontSize='56' transform='translate(51 41)'>
+                <tspan x='.872' y='77'>
+                  {timer?.toString().padStart(2, '0')}s
+                </tspan>
+              </text>
+            </g>
+          </svg>
+        </div>
       </div>
+      <div
+        className={css['winners-bar']}
+        style={{
+          backgroundColor: winner
+            ? winner === '1'
+              ? '#fd6687'
+              : '#ffce67'
+            : '#5c2dd5',
+        }}
+      ></div>
     </div>
   )
 }

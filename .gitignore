@@ -28,3 +28,4 @@ BoardComponent.razor.css
 notes.text
 .buildt/buildt.gz
 .gitignore
+.safurai/config.yml

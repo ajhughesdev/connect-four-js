@@ -1,9 +1,15 @@
 .section {
   background-color: #7945FF;
-  max-height: 100svh;
+  min-height: 100%;
+  min-width: 100%;
   display: grid;
   place-items: center;
-  padding: 97px 20px 129px;
+  /* padding: 97px 20px 129px; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+
 }
 
 .article {
@@ -12,8 +18,8 @@
   border: 3px solid black;
   box-shadow: 0 10px 0 0 black;
   border-radius: 40px;
-  max-height: 586px;
-  max-width: 335px;
+  height: 586px;
+  width: 335px;
 }
 
 .headings {
@@ -28,7 +34,7 @@
   margin-block-end: 29px;
 }
 
-p {
+.article p {
   margin-block-end: 33px;
 }
 
@@ -37,10 +43,6 @@ p {
   font-size: 20px;
   line-height: calc(25.52 / 20);
   margin-block-end: 1rem;
-}
-
-.headings:last-child {
-  /* margin-block-start: 33px; */
 }
 
 .how-to-play {
@@ -72,6 +74,7 @@ p {
 .how-to-play li:where(:not(.first-rule))::marker {
   content: counter(list-item);
 }
+
 .first-rule {
   /* counter-reset: list-item */
   margin-left: -29px;
@@ -92,6 +95,3 @@ p {
   place-items: center;
   margin-block-start: -3px;
 }
-
-
-

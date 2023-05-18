@@ -1,0 +1,56 @@
+.winning-message-container {
+  position: absolute;
+  right: 0;
+  left: 0;
+  background-color: hsl(0, 0%, 100%);
+  border: 3px solid hsl(0, 0%, 0%);
+  box-shadow: 0 10px 0 hsl(0, 0%, 0%);
+  border-radius: 20px;
+  width: 285px;
+  height: 160px;
+  margin-inline: auto;
+  bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  z-index: 3;
+}
+
+.winning-message {
+  display: flex;
+  flex-direction: column;
+  padding-block: 14px 0;
+}
+
+.winner {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: calc(20.42 / 16);
+  margin-bottom: -5px;
+}
+
+.winning-message span:last-of-type {
+  font-size: 56px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: calc(71.46 / 56);
+}
+
+.reset-button {
+  text-transform: uppercase;
+  text-align: center;
+  width: 130px;
+  margin-inline: auto;
+  background-color: #5c2dd5;
+  color: white;
+  font-weight: 700;
+  line-height: calc(20.42 / 16);
+  font-size: 1rem;
+  border-radius: 20px;
+  padding-block: 9px 10px;
+  cursor: pointer;
+}
+
+.reset-button:hover {
+  background-color: #fd6687;
+}
