@@ -1,6 +1,8 @@
 .scoreboards {
   display: flex;
   gap: 15px;
+  justify-content: center;
+  margin-inline: calc(17px + 1.5625vw);
 
   @media (min-width: 640px) {
     gap: 35px;
@@ -8,13 +10,19 @@
 }
 
 .game {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
+  position: relative;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  /* justify-content: space-evenly; */
+  /* height: 100%; */
+  /* overflow: hidden; */
+  width: 100svw;
   background-color: #7945ff;
+
+  @media (max-height: 667px) {
+    overflow: hidden;
+  }
 }
 
 .board-container {
@@ -23,39 +31,62 @@
   align-items: center;
   justify-content: center;
   width: 335px;
-  height: 100%;
+  height: 320px;
   position: relative;
-  margin: auto;
-  z-index: 1;
+  margin: 0 auto;
+  /* z-index: 1; */
+  /* border: red solid 1px; */
+
+  @media (min-width: 640px) {
+    width: 632px;
+  }
+  /* container: board / inline-size; */
 }
 
 .board {
   display: flex;
   flex-direction: column;
-  width: 335px;
+  width: 100%;
+  /* height: 100%; */
   pointer-events: auto;
   cursor: pointer;
   position: absolute;
-  top: 0;
-  left: 0;
+  /* top: 0; */
+  /* left: 0; */
   padding: 7.62px 7px;
+  /* z-index: 2; */
+  /* margin: 0 auto 236px; */
+
+  @media (min-width: 640px) {
+    width: 632px;
+    padding: 14px;
+  }
 }
 
 .winners-bar {
-  width: 375px;
-  height: 236px;
-  /* background-color: #5C2DD5; */
-  position: absolute;
-  bottom: 0;
+  width: 100svw;
+  height: 100svh;
+  max-height: 236px;
   border-radius: 60px 60px 0 0;
-  z-index: 0;
+  /* position: relative; */
+  /* top: 295px; */
+  /* z-index: 0; */
+
+  @media (min-width: 640px) {
+    height: 234px;
+  }
 }
 
 .row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 7px;
+  gap: 6.72px;
+
+  @media (min-width: 640px) {
+    gap: 18px;
+    margin-block-end: calc(9px + 1.5625vh);
+  }
 }
 
 .cell {
@@ -64,35 +95,46 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
+
+  @media (min-width: 640px) {
+    width: 75px;
+    height: 75px;
+  }
 }
 
 .black-board,
 .white-board {
-  position: absolute;
   top: 0;
   left: 0;
   pointer-events: none;
-
-  @media (min-width: 640px) {
-    display: none;
-  }
+  position: absolute;
 }
 
-.black-board-large,
-.white-board-large {
-  display: none;
-
-  @media (min-width: 640px) {
-    position: absolute;
+@media (min-width: 640px) {
+  .black-board-large,
+  .white-board-large {
+    /* position: absolute; */
     display: block;
     top: 0;
-    pointer--events: none;
+    pointer-events: none;
   }
 }
 
-/* .black-board,
+.black-board,
+/* .black-board-large, */
+.white-board,
+/* .white-board-large { */ {
+}
+
+.black-board,
 .black-board-large {
-  translate: 0 10px;
+  /* z-index: 1; */
+}
+
+/* .white-board,
+.white-board-large {
+  z-index: 1;
 } */
 
 .game-piece {
@@ -102,18 +144,27 @@
   position: absolute;
   display: block;
   background-size: cover;
+
+  @media (min-width: 640px) {
+    height: 75px;
+    width: 70px;
+  }
 }
 
 [data-type='1'] {
   background-image: url('./../../assets/images/counter-red-small.svg');
+
+  @media (min-width: 640px) {
+    background-image: url('./../../assets/images/counter-red-large.svg');
+  }
 }
 
 [data-type='2'] {
   background-image: url('./../../assets/images/counter-yellow-small.svg');
-}
 
-.game-piece[data-type='1'].highlight {
-  background-image: url('./../../assets/images/counter-red-small-win.svg');
+  @media (min-width: 640px) {
+    background-image: url('./../../assets/images/counter-yellow-large.svg');
+  }
 }
 
 .game-piece[data-type='1'].highlight {
@@ -122,6 +173,13 @@
   background-size: 20px 20px, cover;
   background-position: 52%, center;
   background-repeat: no-repeat;
+
+  @media (min-width: 640px) {
+    background-image: url('./../../assets/images/highlight-win-large.svg'),
+      url('./../../assets/images/counter-red-large.svg');
+    background-size: 34px 34px, cover;
+    background-position: 49%, 52%;
+  }
 }
 
 .game-piece[data-type='2'].highlight {
@@ -130,104 +188,15 @@
   background-size: 20px 20px, cover;
   background-position: 52%, center;
   background-repeat: no-repeat;
+
+  @media (min-width: 640px) {
+    background-image: url('./../../assets/images/highlight-win-large.svg'),
+      url('./../../assets/images/counter-yellow-large.svg');
+    background-size: 34px 34px, cover;
+    background-position: 49%, 52%;
+  }
 }
 
-.your-turn {
-  position: relative;
-  bottom: -115px;
-}
-
-.your-turn1 {
-  fill: #fd6687;
-}
-
-.your-turn2 {
-  fill: #ffce67;
-}
-
-.your-turng1 {
-  fill: white;
-}
-
-.your-turng2 {
-  fill: black;
-}
-
-.modal-main > .modal-content {
-  position: absolute;
-  margin: 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  text-transform: uppercase;
-  border: 3px solid black;
-  box-shadow: 0px 10px 0px #000000;
-}
-
-.modal {
-  top: 80.5%;
-  width: 279px;
-  height: 160px;
-  background-color: white;
-  border-radius: 20px;
-  padding-block: 17px;
-  z-index: 2;
-}
-
-.modal-main {
-  position: absolute;
-  background-color: rgb(0 0 0 / 0.5);
-  height: 100svh;
-  width: 100%;
-  z-index: 3;
-}
-
-.modal-main > .modal-content {
-  height: 437px;
-  width: 335px;
-  top: 50%;
-  background-color: #7945ff;
-  display: flex;
-  flex-direction: column;
-  padding: 33px 20px;
-  border-radius: 40px;
-}
-
-.pause {
-  font-size: 56px;
-  color: white;
-  line-height: calc(71.46 / 56);
-  font-weight: 700;
-  margin-block-end: 33px;
-}
-
-.modal-content .buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: calc(30.62 / 24);
-}
-
-.buttons button,
-.buttons a {
-  border: 3px solid black;
-  padding-block: 21px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
-  box-shadow: 0 10px 0 black;
-  height: 72px;
-  cursor: pointer;
-}
-
-.buttons button {
-  background-color: white;
-}
-
-.buttons a {
-  background-color: #fd6687;
-  color: white;
+.pointer-event {
+  pointer-events: auto;
 }

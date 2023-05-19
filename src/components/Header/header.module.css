@@ -1,10 +1,14 @@
 .header {
   max-width: 632px;
+  height: 100%;
   width: 100%;
-  padding-block: 47px;
-
+  padding-block: 10px;
   @media (min-width: 640px) {
     padding-block: 27px 23px;
+  }
+
+  @media (min-height: 668px) {
+    padding-block: 47px;
   }
 }
 
@@ -12,24 +16,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-inline: 20px;
+  margin-inline: calc(17px + 1.5625vw);
 
   @media (min-width: 960px) {
     /* justify-content: space-around; */
   }
 }
 
-
 .logo {
   /* margin-inline: auto; */
 
   @media (min-width: 640px) {
     width: 52px;
-    translate: 7px 0;
+    /* translate: 7px 0; */
     /* padding-inline: 201px 179px; */
   }
 
-  @media (min-width: 960px) {}
+  @media (min-width: 960px) {
+  }
 }
 
 .button {
@@ -61,5 +65,4 @@
 
 .button:last-of-type {
   /* margin-inline-start: 179px; */
-
 }

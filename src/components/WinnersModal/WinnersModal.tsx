@@ -1,7 +1,7 @@
 import css from './winnersModal.module.css'
 
 interface WinnersModalProps {
-  winner: string
+  winner: string | null
   playAgain: () => void
 }
 

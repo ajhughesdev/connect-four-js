@@ -1,26 +1,32 @@
-@import "the-new-css-reset";
+@import 'the-new-css-reset';
 
 @font-face {
   font-family: 'Space Grotesk';
-  src: url('./assets/fonts/SpaceGrotesk-VariableFont_wght.woff2') format('woff2-variations');
+  src: url('./assets/fonts/SpaceGrotesk-VariableFont_wght.woff2')
+    format('woff2-variations');
   font-style: normal;
   font-weight: 300 700;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: "Space Grotesk-fallback";
+  font-family: 'Space Grotesk-fallback';
   size-adjust: 136.69%;
   ascent-override: 84%;
-  src: local("Arial");
+  src: local('Arial');
 }
 
 :root {
-  font-family: "Space Grotesk", "Space Grotesk-fallback", sans-serif;
+  font-family: 'Space Grotesk', 'Space Grotesk-fallback', sans-serif;
   font-size: 16px;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 svg:hover #Oval-Copy-37,
 svg:hover #Oval-Copy-38 {
-  fill: #5C2DD5;
+  fill: #5c2dd5;
 }

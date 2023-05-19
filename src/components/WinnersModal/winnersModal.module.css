@@ -1,32 +1,40 @@
 .winning-message-container {
   position: absolute;
-  right: 0;
-  left: 0;
+  /* right: 0; */
+  /* left: 0; */
+  /* top: 0; */
   background-color: hsl(0, 0%, 100%);
   border: 3px solid hsl(0, 0%, 0%);
   box-shadow: 0 10px 0 hsl(0, 0%, 0%);
   border-radius: 20px;
   width: 285px;
-  height: 160px;
+  height: 166px;
   margin-inline: auto;
-  bottom: 70px;
-  display: flex;
-  flex-direction: column;
+  /* margin-block: auto; */
+  /* bottom: 0; */
+  /* display: flex; */
+  display: grid;
+  place-items: center;
+  /* flex-direction: column; */
   text-align: center;
-  z-index: 3;
+  /* z-index: 3; */
+  padding-block: 17px;
+  margin-block: auto;
+
+  @media (min-width: 640px) {
+  }
 }
 
 .winning-message {
   display: flex;
   flex-direction: column;
-  padding-block: 14px 0;
 }
 
 .winner {
   font-size: 1rem;
   font-weight: 700;
   line-height: calc(20.42 / 16);
-  margin-bottom: -5px;
+  margin-bottom: calc(-5px + 1.5625vh);
 }
 
 .winning-message span:last-of-type {

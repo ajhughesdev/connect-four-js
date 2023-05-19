@@ -1,18 +1,23 @@
 .player-board {
+  container: score-board / inline-size;
   position: relative;
   background-color: hsl(0, 0%, 100%);
   border: 3px solid hsl(0, 0%, 0%);
   box-shadow: 0 10px 0 hsl(0, 0%, 0%);
   border-radius: 20px;
-  height: 81px;
+  height: 87px;
   width: 142px;
-  margin-block-end: 50px;
+  margin-block-end: 10px;
   padding-block: 10px;
 
+  @media (min-height: 668px) {
+    margin-block-end:34px;
+  }
+
   @media (min-width: 640px) {
-    width: 278px;
-    height: 100px;
-    display: flex;
+    /* width: 278px; */
+    /* height: 116px; */
+    /* display: flex; */
     align-items: center;
     /* margin-inline: 20px; */
     justify-content: space-between;
@@ -60,10 +65,10 @@
   font-weight: 700;
   text-align: center;
   font-size: 1rem;
-  margin-inline-start: 44px;
 
   @media (min-width: 640px) {
     line-height: calc(25.52 / 20);
+    margin-inline-start: 44px;
     font-size: 20px;
   }
 
@@ -96,7 +101,6 @@
 
 .player-board:last-of-type p:last-of-type {
   @media (min-width: 640px) {
-    margin-inline:19px 0;
+    margin-inline: 19px 0;
   }
-
 }
