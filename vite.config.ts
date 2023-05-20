@@ -6,7 +6,7 @@ import autoprefixer from 'autoprefixer'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // base: "/connect-four-js",
+  base: "/connect-four-js/",
   plugins: [react(), svgr()],
   server: {
     watch: {
