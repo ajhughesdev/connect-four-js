@@ -26,7 +26,7 @@ const Rules = () => {
           </li>
         </ul>
         <Link to='/' className={css['back-to-main']}>
-          <IconCheck width={64} height={64} />
+          <IconCheck width={70} height={75} />
         </Link>
       </article>
     </section>

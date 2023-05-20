@@ -1,5 +1,4 @@
 .player-board {
-  container: score-board / inline-size;
   position: relative;
   background-color: hsl(0, 0%, 100%);
   border: 3px solid hsl(0, 0%, 0%);
@@ -11,28 +10,38 @@
   padding-block: 10px;
 
   @media (min-height: 668px) {
-    margin-block-end:34px;
+    margin-block-end: 34px;
   }
 
   @media (min-width: 640px) {
-    /* width: 278px; */
-    /* height: 116px; */
-    /* display: flex; */
+    width: 278px;
+    height: 116px;
+    display: flex;
     align-items: center;
     /* margin-inline: 20px; */
     justify-content: space-between;
   }
 
-  @media (min-width: 960px) {
+  @media (min-width: 1040px) {
+    /* position: absolute; */
+    /* display: flex; */
+    flex-direction: column;
+    /* gap: 200px; */
+    /* width: 1040px; */
     height: 160px;
     width: 141px;
-    transform: translateY(-18px);
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* transform: translateY(-18px); */
   }
 }
 
 .player-board:last-of-type {
   @media (min-width: 640px) {
     flex-direction: row-reverse;
+  }
+  @media (min-width: 1040px) {
+    flex-direction: column;
   }
 }
 
@@ -46,9 +55,9 @@
     top: 20px;
   }
 
-  @media (min-width: 960px) {
-    margin-inline: 42px;
-    transform: translateY(-27px);
+  @media (min-width: 1040px) {
+    top: -27px;
+    left: 38px;
   }
 }
 
@@ -57,6 +66,10 @@
 
   @media (min-width: 640px) {
     left: 246px;
+  }
+
+  @media (min-width: 1040px) {
+    left: unset;
   }
 }
 
@@ -72,8 +85,9 @@
     font-size: 20px;
   }
 
-  @media (min-width: 960px) {
-    margin-block: 46px 0;
+  @media (min-width: 1040px) {
+    margin-block: 36px 0;
+    margin-inline: unset;
   }
 }
 
@@ -81,6 +95,10 @@
   @media (min-width: 640px) {
     margin-inline-start: 0;
     margin-inline-end: 44px;
+  }
+
+  @media (min-width: 1040px) {
+    margin-inline: unset;
   }
 }
 
@@ -102,5 +120,9 @@
 .player-board:last-of-type p:last-of-type {
   @media (min-width: 640px) {
     margin-inline: 19px 0;
+  }
+
+  @media (min-width: 1040px) {
+    margin-inline: unset;
   }
 }

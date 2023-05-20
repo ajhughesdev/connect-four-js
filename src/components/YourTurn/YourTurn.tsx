@@ -1,4 +1,5 @@
 import WinnersModal from '../WinnersModal/WinnersModal'
+
 import css from './YourTurn.module.css'
 
 interface YourTurnProps {
@@ -12,8 +13,9 @@ const YourTurn = ({
   currentPlayer,
   timer,
   winner,
-  playAgain,
+  playAgain
 }: YourTurnProps) => {
+
   return (
     <>
       <div className={css['your-turn']}>
@@ -93,6 +95,7 @@ const YourTurn = ({
           </g>
         </svg>
         {winner && <WinnersModal winner={winner} playAgain={playAgain} />}
+
       </div>
 
     </>

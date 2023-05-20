@@ -34,7 +34,7 @@
   font-size: 1rem;
   font-weight: 700;
   line-height: calc(20.42 / 16);
-  margin-bottom: calc(-5px + 1.5625vh);
+  margin-bottom: -5px;
 }
 
 .winning-message span:last-of-type {

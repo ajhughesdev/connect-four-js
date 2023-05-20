@@ -1,16 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
-// import { Link } from 'react-router-dom'
+import useSound from 'use-sound'
 
 import Header from '../../components/Header/Header'
 import PlayerScoreBoard from '../../components/PlayerScoreBoard/PlayerScoreBoard'
-import WinnersModal from '../../components/WinnersModal/WinnersModal'
 import GamePiece from '../../components/GamePiece/GamePiece'
 
 import { ReactComponent as BlackBoard } from './../../assets/images/board-layer-black-small.svg'
 import { ReactComponent as BlackBoardLarge } from './../../assets/images/board-layer-black-large.svg'
 import { ReactComponent as WhiteBoard } from './../../assets/images/board-layer-white-small.svg'
 import { ReactComponent as WhiteBoardLarge } from './../../assets/images/board-layer-white-large.svg'
-// import { ReactComponent as WinnersBar } from './../../assets/images/winners-bar-small.svg'
+import winSfx from './../../assets/winner.mp3'
 
 import css from './connectFour.module.css'
 import IngameMenu from '../../components/IngameMenu/IngameMenu'
@@ -34,6 +33,7 @@ const ConnectFour: React.FC = () => {
   const [winner, setWinner] = useState<string | null>(null)
   const [menuVisible, setMenuVisible] = useState<boolean>(false)
   const [remainingTime, setRemainingTime] = useState<number | null>(null)
+  const [sound, setSound] = useState<boolean>(true)
 
   const toggleMenu = () => {
     setMenuVisible((prevMenuVisible) => {
@@ -217,13 +217,25 @@ const ConnectFour: React.FC = () => {
     return board[0][col].player !== ''
   }
 
+  const [play] = useSound(winSfx, { volume: 0.15 })
+
+  const toggleSound = () => {
+    setSound(!sound)
+  }
+
+  useEffect(() => {
+    if (winner && sound) {
+      play()
+    }
+  }, [winner])
+
   useEffect(() => {
     setBoard(initializeBoard())
   }, [])
 
   return (
     <div className={css.game}>
-      <Header toggleMenu={toggleMenu} restartGame={restartGame} />
+      <Header toggleMenu={toggleMenu} restartGame={restartGame} sound={sound} toggleSound={toggleSound} />
       <div className={css.scoreboards}>
         <PlayerScoreBoard player={'1'} score={player1Score} />
         <PlayerScoreBoard player={'2'} score={player2Score} />
@@ -261,13 +273,23 @@ const ConnectFour: React.FC = () => {
                   onMouseEnter={() => handleMouseEnter(colIndex)}
                   onMouseLeave={handleMouseLeave}
                 >
-                  {window.matchMedia('(min-width: 960px)').matches &&
+                  {window.matchMedia('(min-width: 1040px)').matches &&
                     rowIndex === 0 &&
                     hoveredColumn === colIndex &&
                     !isColumnFull(colIndex) && (
                       <div className='arrow'>
                         <span role='img' aria-label='arrow'>
-                          ⬇️
+                          <svg viewBox="0 0 38 36" className={css['arrow-svg']}
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlnsXlink="http://www.w3.org/1999/xlink">
+                            <defs>
+                              <path d="m882.01 132.377 10.932-8.157a5 5 0 0 1 5.96-.015l11.068 8.172A5 5 0 0 1 912 136.4v6.6a5 5 0 0 1-5 5h-22a5 5 0 0 1-5-5v-6.616a5 5 0 0 1 2.01-4.007Z" id="b" />
+                            </defs>
+                            <g transform="matrix(1 0 0 -1 -877 156)" fill="none" fillRule="evenodd">
+                              <use fill="#000" filter="url(#a)" xlinkHref="#b" />
+                              <path stroke="#000" strokeWidth="3" d="M895.916 121.727a6.49 6.49 0 0 1 3.877 1.271l11.068 8.173a6.5 6.5 0 0 1 2.639 5.229v6.6a6.48 6.48 0 0 1-1.904 4.596A6.48 6.48 0 0 1 907 149.5h-22a6.48 6.48 0 0 1-4.596-1.904A6.48 6.48 0 0 1 878.5 143v-6.616a6.5 6.5 0 0 1 2.613-5.21l10.932-8.157a6.49 6.49 0 0 1 3.87-1.29Z" fill={currentPlayer === '1' ? '#FD6687' : '#FFCE67'} />
+                            </g>
+                          </svg>
                         </span>
                       </div>
                     )}
@@ -285,18 +307,14 @@ const ConnectFour: React.FC = () => {
           {window.matchMedia('(max-width: 639px)').matches ? (
             <WhiteBoard
               className={css['white-board']}
-              style={{
-                pointerEvents: winner ? 'auto' : 'none'
-              }}
+              style={{ pointerEvents: winner ? 'auto' : 'none' }}
             // width={335}
             // height={310}
             />
           ) : (
             <WhiteBoardLarge
               className={css['white-board-large']}
-              style={{
-                pointerEvents: winner ? 'auto' : 'none'
-              }}
+              style={{ pointerEvents: winner ? 'auto' : 'none' }}
             // width={632}
             // height={584}
             />
@@ -320,7 +338,7 @@ const ConnectFour: React.FC = () => {
         }}
       >
       </div>
-    </div>
+    </div >
   )
 }
 export default ConnectFour

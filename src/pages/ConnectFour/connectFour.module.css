@@ -2,10 +2,18 @@
   display: flex;
   gap: 15px;
   justify-content: center;
-  margin-inline: calc(17px + 1.5625vw);
+  margin-inline: 17px;
 
   @media (min-width: 640px) {
     gap: 35px;
+  }
+
+  @media (min-width: 1040px) {
+    gap: 758px;
+    position: absolute;
+    width: 100%;
+    margin-inline: auto;
+    top: 37%;
   }
 }
 
@@ -19,9 +27,18 @@
   /* overflow: hidden; */
   width: 100svw;
   background-color: #7945ff;
+  /* border: red 1px solid; */
+  min-height: 100svh;
+
+  @media (min-width: 640px) {
+    position: absolute;
+    /* top: 0; */
+    bottom: 0;
+  }
 
   @media (max-height: 667px) {
-    overflow: hidden;
+    overflow: none;
+    height: 100%;
   }
 }
 
@@ -34,13 +51,19 @@
   height: 320px;
   position: relative;
   margin: 0 auto;
-  /* z-index: 1; */
-  /* border: red solid 1px; */
 
   @media (min-width: 640px) {
+    /* box-sizing: unset; */
     width: 632px;
+    /* position: absolute; */
+    z-index: 1;
   }
-  /* container: board / inline-size; */
+
+  @media (min-width: 960px) {
+    position: absolute;
+    margin: 40px 0 0;
+    width: 100%;
+  }
 }
 
 .board {
@@ -59,13 +82,16 @@
 
   @media (min-width: 640px) {
     width: 632px;
-    padding: 14px;
+    padding: 17px;
+    /* position: relative; */
+    /* height: 100svh; */
+    top: 0;
   }
 }
 
 .winners-bar {
   width: 100svw;
-  height: 100svh;
+  min-height: 100svh;
   max-height: 236px;
   border-radius: 60px 60px 0 0;
   /* position: relative; */
@@ -73,7 +99,14 @@
   /* z-index: 0; */
 
   @media (min-width: 640px) {
-    height: 234px;
+    min-height: 234px;
+    position: absolute;
+    bottom: 0;
+    /* z-index: 0; */
+  }
+
+  @media (min-width: 960px) {
+   min-height: 200px;
   }
 }
 
@@ -85,7 +118,7 @@
 
   @media (min-width: 640px) {
     gap: 18px;
-    margin-block-end: calc(9px + 1.5625vh);
+    margin-block-end: 9px;
   }
 }
 
@@ -114,28 +147,13 @@
 @media (min-width: 640px) {
   .black-board-large,
   .white-board-large {
-    /* position: absolute; */
-    display: block;
+    position: absolute;
+    /* display: block; */
     top: 0;
+    left: 0;
     pointer-events: none;
   }
 }
-
-.black-board,
-/* .black-board-large, */
-.white-board,
-/* .white-board-large { */ {
-}
-
-.black-board,
-.black-board-large {
-  /* z-index: 1; */
-}
-
-/* .white-board,
-.white-board-large {
-  z-index: 1;
-} */
 
 .game-piece {
   height: 46px;
@@ -177,8 +195,8 @@
   @media (min-width: 640px) {
     background-image: url('./../../assets/images/highlight-win-large.svg'),
       url('./../../assets/images/counter-red-large.svg');
-    background-size: 34px 34px, cover;
-    background-position: 49%, 52%;
+    background-size: 34px 34px, contain;
+    background-position: center 18px, center center;
   }
 }
 
@@ -193,10 +211,17 @@
     background-image: url('./../../assets/images/highlight-win-large.svg'),
       url('./../../assets/images/counter-yellow-large.svg');
     background-size: 34px 34px, cover;
-    background-position: 49%, 52%;
+    background-position: center 18px, center center;
   }
 }
 
 .pointer-event {
   pointer-events: auto;
+}
+
+.arrow-svg {
+  display: block;
+  translate: 0 -76px;
+  filter: drop-shadow(0 5px 0 rgba(0, 0, 0));
+  width: 38px;
 }

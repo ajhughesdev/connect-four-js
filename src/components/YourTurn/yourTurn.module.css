@@ -10,7 +10,8 @@
   align-items: center;
 
   @media (min-width: 640px) {
-    translate: 0 130px;
+    /* translate: 0 130px; */
+    bottom: -465px;
   }
 }
 

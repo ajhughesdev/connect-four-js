@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr'
 import postcssPresetEnv from 'postcss-preset-env'
+import autoprefixer from 'autoprefixer'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,12 +14,16 @@ export default defineConfig({
   },
   css: {
     postcss: {
-      plugins: [postcssPresetEnv({
-        stage: 2,
-        features: {
-          'nesting-rules': true,  
-        }
-      })],
+      plugins: [
+        postcssPresetEnv({
+          stage: 2,
+          features: {
+            'nesting-rules': true,
+          },
+        }),
+        autoprefixer(),
+      ],
+      map: true,
     },
-  }
+  },
 })

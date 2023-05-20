@@ -8,6 +8,10 @@
   z-index: 4;
   display: grid;
   place-items: center;
+
+  /* @media (min-width: 640px) {
+    top: 15px;
+  } */
 }
 
 .modal-content {
@@ -22,6 +26,17 @@
   padding: 33px 20px;
   /* margin-block: 50% calc(50% - 16px); */
   text-transform: uppercase;
+
+  @media (min-width: 640px) {
+    height: 497px;
+    width: 480px;
+    padding: 50px 40px 37px;
+  }
+
+  @media (min-width: 960px) {
+    /* position: absolute; */
+    translate: 0 8px;
+  }
 }
 
 .buttons {
@@ -62,4 +77,12 @@
   font-weight: 700;
   margin-block-end: 33px;
   text-align: center;
+
+  @media (min-width: 640px) {
+    margin-block-end: 47px;
+  }
+
+  @media (min-width: 960px) {
+    margin-block-end: 50px;
+  }
 }
