@@ -1,6 +1,6 @@
 import WinnersModal from '../WinnersModal/WinnersModal'
 
-import css from './YourTurn.module.css'
+import css from './yourTurn.module.css'
 
 interface YourTurnProps {
   currentPlayer: string
