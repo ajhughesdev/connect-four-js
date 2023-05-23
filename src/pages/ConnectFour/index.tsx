@@ -248,14 +248,10 @@ const ConnectFour: React.FC = () => {
           {window.matchMedia('(max-width: 639px)').matches ? (
             <BlackBoard
               className={css['black-board']}
-            // width={335}
-            // height={320}
             />
           ) : (
             <BlackBoardLarge
               className={css['black-board-large']}
-            // width={632}
-            // height={594}
             />
           )}
 
@@ -308,15 +304,11 @@ const ConnectFour: React.FC = () => {
             <WhiteBoard
               className={css['white-board']}
               style={{ pointerEvents: winner ? 'auto' : 'none' }}
-            // width={335}
-            // height={310}
             />
           ) : (
             <WhiteBoardLarge
               className={css['white-board-large']}
               style={{ pointerEvents: winner ? 'auto' : 'none' }}
-            // width={632}
-            // height={584}
             />
           )}
         </div>
