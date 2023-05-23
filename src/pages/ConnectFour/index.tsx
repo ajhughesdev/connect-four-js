@@ -27,7 +27,7 @@ const ConnectFour: React.FC = () => {
   const [hoveredColumn, setHoveredColumn] = useState<number | null>(null)
   const [player1Score, setPlayer1Score] = useState<number>(0)
   const [player2Score, setPlayer2Score] = useState<number>(0)
-  const [timer, setTimer] = useState<number>(15)
+  const [timer, setTimer] = useState<number>(30)
   const [gameStarted, setGameStarted] = useState<boolean>(false)
   const timerRef = useRef<number>()
   const [winner, setWinner] = useState<string | null>(null)
@@ -60,7 +60,7 @@ const ConnectFour: React.FC = () => {
     setPlayer2Score(0)
     setWinner(null)
     clearInterval(timerRef.current)
-    setTimer(15)
+    setTimer(30)
     setGameStarted(false)
     setMenuVisible(false)
   }
@@ -161,7 +161,7 @@ const ConnectFour: React.FC = () => {
     setBoard(initializeBoard())
     setCurrentPlayer('1')
     setWinner(null)
-    setTimer(15)
+    setTimer(30)
   }
 
   const checkWin = (
