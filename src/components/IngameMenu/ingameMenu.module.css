@@ -70,6 +70,12 @@
   color: white;
 }
 
+.buttons button:hover,
+.buttons a:hover {
+  box-shadow: 0 10px #5c2dd5;
+  border: 3px solid #5c2dd5;
+}
+
 .pause {
   font-size: 56px;
   color: white;
