@@ -92,7 +92,7 @@ const ConnectFour: React.FC = () => {
           }
           setBoard(initializeBoard())
           setCurrentPlayer(currentPlayer === '1' ? '2' : '1')
-          setTimer(15)
+          setTimer(30)
         }
         return (prevTime ?? 0) - 1
       })
